@@ -8,8 +8,11 @@
     "url": "https://github.com/bluewings/gatsby-starter-mdx-blog/issues"
   },
   "dependencies": {
+    "@mdx-js/mdx": "^0.17.0",
+    "@mdx-js/tag": "^0.17.0",
     "gatsby": "^2.0.118",
     "gatsby-image": "^2.0.29",
+    "gatsby-mdx": "^0.3.5",
     "gatsby-plugin-feed": "^2.0.13",
     "gatsby-plugin-google-analytics": "^2.0.13",
     "gatsby-plugin-manifest": "^2.0.17",
@@ -23,7 +26,6 @@
     "gatsby-remark-responsive-iframe": "^2.0.9",
     "gatsby-remark-smartypants": "^2.0.8",
     "gatsby-source-filesystem": "^2.0.20",
-    "gatsby-transformer-remark": "^2.2.4",
     "gatsby-transformer-sharp": "^2.1.13",
     "prismjs": "^1.15.0",
     "react": "^16.8.1",
