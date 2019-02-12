@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter MDX Blog`,
+    title: `개츠비 스타터 MDX`,
     author: `Cha Sung Won`,
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
@@ -74,6 +74,17 @@ module.exports = {
       options: {
         pathToConfigModule: `src/utils/typography`,
       },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Montserrat\:800`,
+          `Black Han Sans`,
+          // other korean google fonts
+          // `Cute Font`, `Do Hyeon`, `Gothic A1`, `Jua`, `Stylish`,
+        ]
+      }
     },
   ],
 }
