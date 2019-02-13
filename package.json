@@ -52,6 +52,7 @@
     "url": "git+https://github.com/bluewings/gatsby-starter-mdx-blog.git"
   },
   "scripts": {
+    "format": "prettier --write '{gatsby-*.js,src/**/*.{js,jsx,json,css}}'",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
