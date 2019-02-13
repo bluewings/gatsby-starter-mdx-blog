@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDXProvider } from '@mdx-js/tag';
-import { Code } from '../components/code';
 import rangeParser from 'parse-numeric-range';
+import { Code } from '../components/code';
 
 const preToCodeBlock = (preProps) => {
   if (
@@ -42,6 +42,7 @@ const preToCodeBlock = (preProps) => {
       ...props,
     };
   }
+  return null;
 };
 
 // components is its own object outside of render so that the references to
@@ -52,10 +53,9 @@ const components = {
     // if there's a codeString and some props, we passed the test
     if (props) {
       return <Code {...props} />;
-    } else {
-      // it's possible to have a pre without a code in it
-      return <pre {...preProps} />;
     }
+    // it's possible to have a pre without a code in it
+    return <pre {...preProps} />;
   },
 };
 export const wrapRootElement = ({ element }) => (
