@@ -1,6 +1,6 @@
-import "typeface-merriweather"
-import { wrapRootElement as wrap } from './src/utils/wrap-root-element'
-import 'prism-themes/themes/prism-a11y-dark.css'
+import 'typeface-merriweather';
+import { wrapRootElement as wrap } from './src/utils/wrap-root-element';
+import 'prism-themes/themes/prism-a11y-dark.css';
 // prism-a11y-dark.css
 // prism-atom-dark.css
 // prism-base16-ateliersulphurpool.light.css
@@ -18,4 +18,4 @@ import 'prism-themes/themes/prism-a11y-dark.css'
 // prism-vs.css
 // prism-xonokai.css
 
-export const wrapRootElement = wrap
+export const wrapRootElement = wrap;

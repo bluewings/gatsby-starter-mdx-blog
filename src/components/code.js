@@ -1,8 +1,8 @@
-import React from 'react'
-import Highlight, { defaultProps } from 'prism-react-renderer'
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
+import React from 'react';
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
-const identity = e => e;
+const identity = (e) => e;
 
 export const Code = ({ codeString, language, highlightLines, ...props }) => {
   if (props['react-live']) {
@@ -12,13 +12,22 @@ export const Code = ({ codeString, language, highlightLines, ...props }) => {
         <LiveError />
         <LivePreview />
       </LiveProvider>
-    )
+    );
   } else {
     const overrideProps = (props, type) => {
       const newProps = { ...props };
       delete newProps.style;
-      if (type === 'line' && highlightLines && highlightLines.indexOf(newProps.key) !== -1) {
-        return { ...newProps, className: [newProps.className, 'gatsby-highlight-code-line'].filter(identity).join(' ') };
+      if (
+        type === 'line' &&
+        highlightLines &&
+        highlightLines.indexOf(newProps.key) !== -1
+      ) {
+        return {
+          ...newProps,
+          className: [newProps.className, 'gatsby-highlight-code-line']
+            .filter(identity)
+            .join(' '),
+        };
       }
       return newProps;
     };
@@ -38,6 +47,6 @@ export const Code = ({ codeString, language, highlightLines, ...props }) => {
           </div>
         )}
       </Highlight>
-    )
+    );
   }
-}
+};

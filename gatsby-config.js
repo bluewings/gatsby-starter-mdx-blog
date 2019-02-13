@@ -83,8 +83,8 @@ module.exports = {
           `Noto Serif KR`,
           // other korean google fonts
           // `Cute Font`, `Do Hyeon`, `Gothic A1`, `Jua`, `Stylish`,
-        ]
-      }
+        ],
+      },
     },
   ],
-}
+};
