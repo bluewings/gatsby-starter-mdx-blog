@@ -50,7 +50,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        // trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
     `gatsby-plugin-feed`,
@@ -78,13 +78,13 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `Montserrat\:800`,
+          `Montserrat:800`,
           `Black Han Sans`,
           `Noto Serif KR`,
           // other korean google fonts
           // `Cute Font`, `Do Hyeon`, `Gothic A1`, `Jua`, `Stylish`,
-        ]
-      }
+        ],
+      },
     },
   ],
-}
+};
