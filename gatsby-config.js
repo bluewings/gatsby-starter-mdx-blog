@@ -1,3 +1,5 @@
+const mdxFeed = require('gatsby-mdx/feed');
+
 module.exports = {
   siteMetadata: {
     title: `개츠비 스타터 MDX`,
@@ -54,7 +56,10 @@ module.exports = {
         // trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: mdxFeed,
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
