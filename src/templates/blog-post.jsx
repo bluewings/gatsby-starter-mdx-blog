@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-mdx';
+import { DiscussionEmbed } from 'disqus-react';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -11,16 +12,12 @@ function BlogPostTemplate(props) {
     location,
     data: {
       site: {
-        siteMetadata: { title: siteTitle },
+        siteMetadata: { title: siteTitle, social: { disqusShortname }, },
       },
       mdx: post,
     },
     pageContext: { previous, next },
   } = props;
-
-  // const post = props.data.mdx;
-  // const siteTitle = props.data.site.siteMetadata.title;
-  // const { previous, next } = props.pageContext;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -68,6 +65,15 @@ function BlogPostTemplate(props) {
           )}
         </li>
       </ul>
+      {disqusShortname && (
+        <DiscussionEmbed
+          shortname={disqusShortname}
+          config={{
+            identifier: post.id,
+            title: post.frontmatter.title,
+          }}
+        />
+      )}
     </Layout>
   );
 }
@@ -80,6 +86,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        social { disqusShortname }
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {
