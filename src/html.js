@@ -32,7 +32,7 @@ export default function HTML(props) {
                 return preferredTheme || THEME_LIGHT;
               }
               
-              function setTheme(newTheme, noAnimate) {
+              function setTheme(newTheme) {
                 preferredTheme = newTheme;
                 [THEME_LIGHT, THEME_DARK].forEach(function (e) {
                   return document.body.classList.remove(e);
@@ -57,7 +57,7 @@ export default function HTML(props) {
                 return newTheme;
               }
               
-              setTheme(getTheme(), false);
+              setTheme(getTheme());
               window.__getTheme = getTheme;
               window.__toggleTheme = toggleTheme;
 
