@@ -1,0 +1,61 @@
+.root {
+  $toggle-size: 50px;
+  $icon-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $toggle-size;
+  height: $toggle-size / 2;
+  overflow: hidden;
+  padding: 0;
+  background: transparent;
+  border: none;
+  .spinner {
+    position: relative;
+    top: ($toggle-size / 2 - $icon-size) / 2;
+    width: $toggle-size;
+    height: $toggle-size;
+    transition: transform .67s linear;
+    .sun,
+    .moon {
+      width: $icon-size;
+      height: $icon-size;
+      left: 50%;
+      margin-left: $icon-size * -0.5;
+      position: absolute;
+    }
+    .sun {
+      bottom: 0;
+      animation: spin 30s linear 0s infinite;
+      path {
+        fill: #F6993F;
+      }
+    }
+    .moon {
+      path {
+        fill: #F2D024;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  transition: color 0.35s ease-out, background-color 0.35s ease-out;
+  &:global(.dark) {
+    background-color: rgb(40, 44, 53);
+    color: rgba(255, 255, 255, 0.88);
+    blockquote {
+      border-left-color: rgba(255, 255, 255, 0.88);
+      color: rgba(255, 255, 255, 0.88);
+    }
+  }
+}
