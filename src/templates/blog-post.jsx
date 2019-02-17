@@ -12,7 +12,10 @@ function BlogPostTemplate(props) {
     location,
     data: {
       site: {
-        siteMetadata: { title: siteTitle, social: { disqusShortname }, },
+        siteMetadata: {
+          title: siteTitle,
+          social: { disqusShortname },
+        },
       },
       mdx: post,
     },
@@ -86,7 +89,9 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
-        social { disqusShortname }
+        social {
+          disqusShortname
+        }
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {

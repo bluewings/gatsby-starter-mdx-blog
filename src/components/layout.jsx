@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { rhythm, scale } from '../utils/typography';
-import './layout.css';
+import Toggle from './toggle';
+import styles from './layout.module.scss';
 
 function Layout(props) {
   const { location, title, children } = props;
@@ -52,6 +53,7 @@ function Layout(props) {
   }
   return (
     <div
+      className={styles.root}
       style={{
         marginLeft: `auto`,
         marginRight: `auto`,
@@ -59,7 +61,11 @@ function Layout(props) {
         padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
       }}
     >
-      <header>{header}</header>
+      <header>
+        {header}
+        <Toggle />
+      </header>
+
       <main>{children}</main>
       <footer>
         © {new Date().getFullYear()}, Built with
