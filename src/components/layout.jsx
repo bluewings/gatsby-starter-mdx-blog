@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { rhythm, scale } from '../utils/typography';
 import Toggle from './toggle';
+import Footer from './footer';
 import styles from './layout.module.scss';
 
 function Layout(props) {
@@ -66,13 +67,8 @@ function Layout(props) {
           {header}
           <Toggle />
         </header>
-
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
