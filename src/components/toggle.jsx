@@ -1,7 +1,24 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useRef, useMemo } from 'react';
 import styles from './toggle.module.scss';
 
-const { __getTheme, __toggleTheme } = window;
+function __getTheme() {
+  try {
+    return window.__getTheme();
+  } catch (err) {
+    /* ignore */
+  }
+  return '';
+}
+
+function __toggleTheme() {
+  try {
+    return window.__toggleTheme();
+  } catch (err) {
+    /* ignore */
+  }
+  return '';
+}
 
 function useTheme() {
   const [theme, setTheme] = useState(__getTheme());
