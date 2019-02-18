@@ -47,15 +47,3 @@
     transform: rotate(360deg);
   }
 }
-
-body {
-  transition: color 0.35s ease-out, background-color 0.35s ease-out;
-  &:global(.dark) {
-    background-color: rgb(40, 44, 53);
-    color: rgba(255, 255, 255, 0.88);
-    blockquote {
-      border-left-color: rgba(255, 255, 255, 0.88);
-      color: rgba(255, 255, 255, 0.88);
-    }
-  }
-}
