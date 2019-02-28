@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-mdx';
 import { DiscussionEmbed } from 'disqus-react';
@@ -6,8 +6,6 @@ import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { rhythm, scale } from '../utils/typography';
-import useDebounce from '../hooks/useDebounce';
-import useTheme from '../hooks/useTheme';
 
 function BlogPostTemplate(props) {
   const {
@@ -23,14 +21,6 @@ function BlogPostTemplate(props) {
     },
     pageContext: { previous, next },
   } = props;
-
-  const theme = useTheme();
-  const [themeLazy, setThemeLazy] = useState(theme);
-  const debounce = useDebounce(300);
-
-  useEffect(() => {
-    debounce(() => setThemeLazy(theme));
-  }, [theme]);
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -80,7 +70,6 @@ function BlogPostTemplate(props) {
       </ul>
       {disqusShortname && (
         <DiscussionEmbed
-          key={themeLazy}
           shortname={disqusShortname}
           config={{
             identifier: post.id,
