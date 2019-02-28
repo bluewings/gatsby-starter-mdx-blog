@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { rhythm } from '../utils/typography';
 
@@ -15,12 +15,12 @@ function Footer() {
           <footer style={{ marginTop: rhythm(2) }}>
             {links.map((link, i) => {
               return (
-                <>
+                <Fragment key={link.name}>
                   {i > 0 && <> &bull; </>}
                   <a href={link.uri} target="_blank" rel="noopener noreferrer">
                     {link.name}
                   </a>
-                </>
+                </Fragment>
               );
             })}
           </footer>
