@@ -39,9 +39,17 @@ export const Code = ({ codeString, language, highlightLines, ...props }) => {
           <pre className={className}>
             {tokens.map((line, i) => (
               <div {...overrideProps(getLineProps({ line, key: i }), 'line')}>
-                {line.map((token, key) => (
-                  <span {...overrideProps(getTokenProps({ token, key }))} />
-                ))}
+                {line.map((token, key, arr) => {
+                  let fixed = token;
+                  if (token.empty && !token.content && arr.length === 1) {
+                    fixed = { ...token, content: ' ' };
+                  }
+                  return (
+                    <span
+                      {...overrideProps(getTokenProps({ token: fixed, key }))}
+                    />
+                  );
+                })}
               </div>
             ))}
           </pre>
