@@ -1,15 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useContext, useRef, useMemo } from 'react';
 import styles from './toggle.module.scss';
-
-function __getTheme() {
-  try {
-    return window.__getTheme();
-  } catch (err) {
-    /* ignore */
-  }
-  return '';
-}
+import { Context as ThemeContext } from '../utils/theme-context';
 
 function __toggleTheme() {
   try {
@@ -21,7 +13,7 @@ function __toggleTheme() {
 }
 
 function useTheme() {
-  const [theme, setTheme] = useState(__getTheme());
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const rotate = useRef(0);
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { MDXProvider } from '@mdx-js/tag';
 import rangeParser from 'parse-numeric-range';
 import { Code } from '../components/code';
+import { Provider as ThemeProvider } from './theme-context';
 
 const preToCodeBlock = (preProps) => {
   if (
@@ -59,5 +60,7 @@ const components = {
   },
 };
 export const wrapRootElement = ({ element }) => (
-  <MDXProvider components={components}>{element}</MDXProvider>
+  <ThemeProvider>
+    <MDXProvider components={components}>{element}</MDXProvider>
+  </ThemeProvider>
 );
