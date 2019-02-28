@@ -1,6 +1,7 @@
 import 'typeface-merriweather';
 import { wrapRootElement as wrap } from './src/utils/wrap-root-element';
 import 'prism-themes/themes/prism-a11y-dark.css';
+// import './node_modules/prismjs/themes/prism.css';
 // prism-a11y-dark.css
 // prism-atom-dark.css
 // prism-base16-ateliersulphurpool.light.css
