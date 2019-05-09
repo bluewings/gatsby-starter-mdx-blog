@@ -23,7 +23,7 @@ function BlogPostTemplate(props) {
   } = props;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} maxWidth={post.frontmatter.max_width}>
       <SEO title={post.frontmatter.title} description={post.excerpt} />
       <h1>{post.frontmatter.title}</h1>
       <p
@@ -103,6 +103,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        max_width
       }
     }
   }

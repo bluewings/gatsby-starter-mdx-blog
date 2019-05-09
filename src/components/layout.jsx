@@ -6,7 +6,7 @@ import Footer from './footer';
 import styles from './layout.module.scss';
 
 function Layout(props) {
-  const { location, title, children } = props;
+  const { location, title, children, maxWidth } = props;
   // eslint-disable-next-line
   const rootPath = `${__PATH_PREFIX__}/`;
   let header;
@@ -59,7 +59,7 @@ function Layout(props) {
         style={{
           marginLeft: `auto`,
           marginRight: `auto`,
-          maxWidth: rhythm(24),
+          maxWidth: maxWidth || rhythm(24),
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
