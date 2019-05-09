@@ -48,16 +48,12 @@ const preToCodeBlock = (preProps) => {
 };
 
 const parseNode = (() => {
-  const pattern = /^---\s*([^\s]+)(.*)$/;
+  const pattern = /^gatsby--([^\s]+)$/;
   return (node) => {
-    if (
-      node.props.name === 'p' &&
-      typeof node.props.children === 'string' &&
-      node.props.children.search(pattern) === 0
-    ) {
-      const matched = node.props.children.match(pattern);
-      const [type, ...args] = matched[1].split('-');
-      return { type, args, node };
+    if (typeof node.type === 'string' && node.type.search(pattern) === 0) {
+      const [, type] = node.type.match(pattern);
+      const props = { ...node.props };
+      return { type, props, node };
     }
     return { type: null, node };
   };
@@ -76,13 +72,16 @@ const components = {
     return <pre {...preProps} />;
   },
   wrapper: (gridProps) => {
-    const nested = gridProps.children.reduce(
+    const children = Array.isArray(gridProps.children)
+      ? gridProps.children
+      : [gridProps.children];
+    const nested = children.reduce(
       (accum, child) => {
         const cursor = {
           col: accum.cursor.col || accum.items,
           row: accum.cursor.col && accum.cursor.row,
         };
-        const { type, args, node } = parseNode(child);
+        const { type, props, node } = parseNode(child);
         if (type === 'grid') {
           if (!cursor.row) {
             const columns = [];
@@ -90,7 +89,10 @@ const components = {
             accum.items.push(<div className={styles.row}>{columns}</div>);
           }
           const rows = [];
-          const classNames = [styles.col, ...args.map((e) => `col-${e}`)];
+          const classNames = [
+            styles.col,
+            ...(props.args || '').split(',').map((e) => `col-${e}`),
+          ];
           cursor.row.push(<div className={classNames.join(' ')}>{rows}</div>);
           cursor.col = rows;
         } else if (type === 'gridend') {
