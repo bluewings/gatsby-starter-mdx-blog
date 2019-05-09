@@ -93,7 +93,9 @@ module.exports = {
         fonts: [
           `Montserrat:800`,
           `Black Han Sans`,
-          `Noto Serif KR`,
+          // `Noto Serif KR`,
+          `Noto Sans KR`,
+          `Gothic A1`,
           // other korean google fonts
           // `Cute Font`, `Do Hyeon`, `Gothic A1`, `Jua`, `Stylish`,
         ],
