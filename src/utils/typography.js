@@ -14,6 +14,9 @@ Wordpress2016.overrideThemeStyles = () => {
       fontFamily: `Montserrat, Black Han Sans`,
       fontWeight: 'normal',
     },
+    p: {
+      wordBreak: 'keep-all',
+    },
     '.date': {
       fontFamily: `'Montserrat SemiBold', 'Apple SD Gothic NEO', helvetica, sans-serif`,
     },

@@ -47,17 +47,65 @@ const preToCodeBlock = (preProps) => {
   return null;
 };
 
+const GRID = 'grid';
+const GRID_WRAPPER = 'row';
+
 const parseNode = (() => {
   const pattern = /^gatsby--([^\s]+)$/;
   return (node) => {
-    if (typeof node.type === 'string' && node.type.search(pattern) === 0) {
-      const [, type] = node.type.match(pattern);
-      const props = { ...node.props };
-      return { type, props, node };
+    const { type, key, props } = node;
+    if (typeof type === 'string' && type.search(pattern) === 0) {
+      const [, tagName] = type.match(pattern);
+      let tag = tagName.replace(/end$/, '');
+      const open = tagName === tag;
+      if (tag === GRID && open === false) {
+        tag = GRID_WRAPPER;
+      }
+      return { tag, open, key, props };
     }
-    return { type: null, node };
+    return { tag: null, type: null, node };
   };
 })();
+
+const getParent = (stack) => stack.slice(-1)[0] || {};
+
+const getCursor = (stack, root) => getParent(stack).cursor || root;
+
+const getChildProps = (tag, props = {}) => {
+  const { id, className, args = [], params = {} } = props;
+
+  const styleKeys = [
+    'background',
+    'color',
+    'overflow',
+    'minHeight',
+    'maxHeight',
+    'height',
+  ];
+
+  const childStyle = Object.keys(params)
+    .filter((e) => styleKeys.indexOf(e) !== -1)
+    .reduce((accum, key) => ({ ...accum, [key]: params[key] }), {});
+
+  const childProps = {
+    className: [
+      `gatsby--${tag}`,
+      ...[tag, ...(args || []).map((e) => `${tag}_${e}`)].map((e) => styles[e]),
+      className,
+    ]
+      .filter((e) => e)
+      .join(' '),
+  };
+
+  if (id) {
+    childProps.id = id;
+  }
+  if (Object.keys(childStyle).length > 0) {
+    childProps.style = childStyle;
+  }
+
+  return childProps;
+};
 
 // components is its own object outside of render so that the references to
 // components are stable
@@ -75,38 +123,53 @@ const components = {
     const children = Array.isArray(gridProps.children)
       ? gridProps.children
       : [gridProps.children];
-    const nested = children.reduce(
+
+    return children.reduce(
       (accum, child) => {
-        const cursor = {
-          col: accum.cursor.col || accum.items,
-          row: accum.cursor.col && accum.cursor.row,
-        };
-        const { type, props, node } = parseNode(child);
-        if (type === 'grid') {
-          if (!cursor.row) {
-            const columns = [];
-            cursor.row = columns;
-            accum.items.push(<div className={styles.row}>{columns}</div>);
+        const { tag, key, props, open } = parseNode(child);
+        const { stack, root } = accum;
+
+        if (tag) {
+          const parent = getParent(stack);
+          if (open) {
+            // same as the previous tag, create it as a sibling node.
+            if (parent && parent.tag === tag) {
+              stack.pop();
+            }
+            if (tag === GRID && getParent(stack).tag !== GRID_WRAPPER) {
+              const columns = [];
+              const childProps = getChildProps(GRID_WRAPPER);
+              getCursor(stack, root).push(
+                <div key={key} {...childProps} data-snippet-tag={GRID_WRAPPER}>
+                  {columns}
+                </div>,
+              );
+              stack.push({ tag: GRID_WRAPPER, cursor: columns });
+            }
+            const childNodes = [];
+            const childProps = getChildProps(tag, props);
+            getCursor(stack, root).push(
+              <div key={key} {...childProps} data-snippet-tag={tag}>
+                {childNodes}
+              </div>,
+            );
+            stack.push({ tag, cursor: childNodes });
+          } else {
+            let curr;
+            do {
+              curr = stack.pop();
+            } while (curr && curr.tag !== tag);
           }
-          const rows = [];
-          const classNames = [
-            styles.col,
-            ...(props.args || '').split(',').map((e) => `col-${e}`),
-          ];
-          cursor.row.push(<div className={classNames.join(' ')}>{rows}</div>);
-          cursor.col = rows;
-        } else if (type === 'gridend') {
-          cursor.col = null;
         } else {
-          cursor.col.push(node);
+          getCursor(stack, root).push(child);
         }
-        return { ...accum, cursor };
+        return accum;
       },
-      { items: [], cursor: { row: null, col: null } },
-    ).items;
-    return nested;
+      { root: [], stack: [] },
+    ).root;
   },
 };
+
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider>
     <MDXProvider components={components}>{element}</MDXProvider>

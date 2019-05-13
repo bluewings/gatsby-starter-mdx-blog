@@ -12,6 +12,7 @@
     "@mdx-js/tag": "^0.17.0",
     "core-js": "^2.6.5",
     "disqus-react": "^1.0.5",
+    "font-awesome": "^4.7.0",
     "gatsby": "^2.1.2",
     "gatsby-image": "^2.0.29",
     "gatsby-mdx": "^0.3.5",
@@ -57,7 +58,7 @@
     "url": "git+https://github.com/bluewings/gatsby-starter-mdx-blog.git"
   },
   "scripts": {
-    "format": "prettier --write '{gatsby-*.js,src/**/*.{js,jsx,json,css},content/**/*.{js,jsx,json,css}}'",
+    "format": "prettier --write '{gatsby-*.js,src/**/*.{js,jsx,ts,tsx,json,css,scss},content/**/*.{js,jsx,ts,tsx,json,css,scss}}'",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",

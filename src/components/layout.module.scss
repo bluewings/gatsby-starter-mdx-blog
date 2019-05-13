@@ -1,5 +1,3 @@
-@import '../styles/font.css';
-
 body {
   // --pink: rgb(255, 167, 196);
   background-color: var(--bg);
@@ -20,6 +18,9 @@ body {
     // --hr: hsla(0, 0%, 100%, 0.2);
     // --inlineCode-bg: hsl(222, 14%, 25%);
     // --inlineCode-text: #e6e6e6;
+    hr {
+      background: rgba(255, 255, 255, 0.2);
+    }
   }
   blockquote {
     color: inherit;

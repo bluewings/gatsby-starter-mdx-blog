@@ -60,7 +60,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        // trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-87089021-3`,
       },
     },
     {
@@ -94,7 +94,7 @@ module.exports = {
           `Montserrat:800`,
           `Black Han Sans`,
           // `Noto Serif KR`,
-          `Noto Sans KR`,
+          // `Noto Sans KR`,
           `Gothic A1`,
           // other korean google fonts
           // `Cute Font`, `Do Hyeon`, `Gothic A1`, `Jua`, `Stylish`,

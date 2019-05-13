@@ -4,6 +4,7 @@ import { rhythm, scale } from '../utils/typography';
 import Toggle from './toggle';
 import Footer from './footer';
 import styles from './layout.module.scss';
+import '../styles/common.css';
 
 function Layout(props) {
   const { location, title, children, maxWidth } = props;
