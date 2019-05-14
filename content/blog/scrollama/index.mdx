@@ -1,0 +1,47 @@
+---
+title: Scrollama
+date: "2019-05-14T01:15:01.683Z"
+max_width: 60rem
+---
+
+import Scrollama from '../../components/Scrollama';
+import Step from './Step.jsx';
+
+[](@grid)
+
+[](@section.step)
+
+<Step text="STEP 0" />
+
+[](@section.step)
+
+<Step text="STEP 1" />
+
+[](@section.step)
+
+<Step text="STEP 2" />
+
+[](@section.step)
+
+<Step text="STEP 3" />
+
+[](@sectionend.step)
+
+[](@grid)
+
+<div style={{ position: 'sticky', top: 0 }}>
+  <Scrollama step=".step" offset="0.5" progress demo={true}>
+    {({ index_, progress_ }) => (
+      <div style={{
+        background: '#eee',
+        padding: '1px 1.7rem',
+        minHeight: 300,
+      }}>
+        <h1>
+          { index_ }
+          <div style={{ float: 'right'}}>{~~(progress_ * 100)}</div>
+        </h1>
+      </div>
+    )}
+  </Scrollama>
+</div>
