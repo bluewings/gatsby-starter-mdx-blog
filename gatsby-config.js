@@ -1,4 +1,5 @@
 const mdxFeed = require('gatsby-mdx/feed');
+const tailwindcss = require('tailwindcss');
 
 module.exports = {
   siteMetadata: {
@@ -54,7 +55,12 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [tailwindcss('./tailwind.config.js')],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
