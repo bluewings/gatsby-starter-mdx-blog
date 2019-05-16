@@ -1,12 +1,13 @@
 .root {
   * {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
+      monospace;
   }
   font-size: 14px;
   margin-left: -1.3125rem;
   margin-right: -1.3125rem;
   border-radius: 0.3em;
-  >ul {
+  > ul {
     background: transparent !important;
     padding: 1.3125rem !important;
     margin: 0 !important;
@@ -17,8 +18,8 @@
     margin-bottom: 0;
     padding-top: 0 !important;
     line-height: 1.3rem;
-    >div:first-child {
-      >div:first-child {
+    > div:first-child {
+      > div:first-child {
         top: -2px;
       }
     }

@@ -15,7 +15,7 @@
     top: ($toggle-size / 2 - $icon-size) / 2;
     width: $toggle-size;
     height: $toggle-size;
-    transition: transform .67s linear;
+    transition: transform 0.67s linear;
     .sun,
     .moon {
       width: $icon-size;
@@ -28,12 +28,12 @@
       bottom: 0;
       animation: spin 30s linear 0s infinite;
       path {
-        fill: #F6993F;
+        fill: #f6993f;
       }
     }
     .moon {
       path {
-        fill: #F2D024;
+        fill: #f2d024;
       }
     }
   }

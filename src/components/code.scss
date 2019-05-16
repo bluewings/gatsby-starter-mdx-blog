@@ -32,7 +32,7 @@ body {
       }
       .gatsby-highlight-code-line {
         background-color: rgba(0, 0, 0, 0.1);
-        border-left: 0.32813rem solid rgba(0, 0, 0, .5);
+        border-left: 0.32813rem solid rgba(0, 0, 0, 0.5);
       }
     }
   }
@@ -42,11 +42,12 @@ body {
     margin-right: -1.3125rem;
     -webkit-overflow-scrolling: touch;
     overflow: auto;
-    code[class*="language-"],
-    pre[class*="language-"] {
-      font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+    code[class*='language-'],
+    pre[class*='language-'] {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
+        monospace;
     }
-    pre[class*="language-"] {
+    pre[class*='language-'] {
       float: left;
       min-width: 100%;
       overflow: auto;
@@ -64,7 +65,7 @@ body {
   }
   @media (max-width: 672px) {
     .gatsby-highlight {
-      pre[class*="language-"] {
+      pre[class*='language-'] {
         border-radius: 0 !important;
       }
     }
