@@ -29,7 +29,7 @@ function Bio() {
                 borderRadius: `50%`,
               }}
             />
-            <p>
+            <p style={{ marginTop: -3 }}>
               Written by <strong>{author}</strong> who lives and works in Suwon,
               South Korea building useful things.
               {` `}

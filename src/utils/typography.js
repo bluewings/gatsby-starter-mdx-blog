@@ -8,7 +8,7 @@ Wordpress2016.overrideThemeStyles = () => {
     },
     body: {
       // fontFamily: `Merriweather, 'Noto Serif KR', Georgia, serif`,
-      fontFamily: `'Gothic A1', 'Apple SD Gothic NEO', helvetica, sans-serif`,
+      fontFamily: `'Open Sans', 'Gothic A1', 'Apple SD Gothic NEO', helvetica, sans-serif`,
     },
     'h1,h2,h3,h4,h5,h6': {
       fontFamily: `Montserrat, Black Han Sans`,
