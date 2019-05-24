@@ -11,7 +11,7 @@ function BlogIndex(props) {
   const posts = data.allMdx.edges;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} isIndexPage>
       <SEO
         title="All posts"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}

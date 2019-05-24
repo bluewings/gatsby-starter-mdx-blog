@@ -7,12 +7,12 @@ import styles from './layout.module.scss';
 import '../styles/common.css';
 
 function Layout(props) {
-  const { location, title, children, maxWidth } = props;
+  const { location, title, children, maxWidth, isIndexPage } = props;
   // eslint-disable-next-line
   const rootPath = `${__PATH_PREFIX__}/`;
   let header;
 
-  if (location.pathname === rootPath) {
+  if (location.pathname === rootPath || isIndexPage) {
     header = (
       <h1
         style={{
