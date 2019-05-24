@@ -11,7 +11,7 @@ function BlogIndex(props) {
   const posts = data.allMdx.edges;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} isIndexPage>
       <SEO
         title="All posts"
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -42,18 +42,22 @@ function BlogIndex(props) {
 export default BlogIndex;
 
 export const pageQuery = graphql`
-  query {
+  query($langKey: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      filter: { fields: { langKey: { eq: $langKey } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
           excerpt
           fields {
             slug
+            langKey
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
