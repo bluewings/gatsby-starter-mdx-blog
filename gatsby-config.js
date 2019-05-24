@@ -14,6 +14,10 @@ module.exports = {
       stackOverflow: ``,
       disqusShortname: `gatsby-starter-mdx-blog`,
     },
+    github: {
+      owner: 'bluewings',
+      repository: 'gatsby-starter-mdx-blog',
+    },
   },
   plugins: [
     {

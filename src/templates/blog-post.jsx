@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-mdx';
 import { DiscussionEmbed } from 'disqus-react';
@@ -11,9 +11,6 @@ import {
   createLanguageLink,
   getLangKeyDefault,
 } from '../utils/i18n';
-
-const GITHUB_USERNAME = 'bluewings';
-const GITHUB_REPO_NAME = 'gatsby-starter-mdx-blog';
 
 const langKeyDefault = getLangKeyDefault();
 
@@ -65,6 +62,7 @@ function BlogPostTemplate(props) {
         siteMetadata: {
           title: siteTitle,
           social: { disqusShortname },
+          github: { owner, repository },
         },
       },
       mdx: post,
@@ -74,7 +72,7 @@ function BlogPostTemplate(props) {
   const lang = post.fields.langKey;
   const languageLink = createLanguageLink(slug, lang);
   const defaultSlug = languageLink(langKeyDefault);
-  const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO_NAME}/edit/master/content/blog/${defaultSlug.slice(
+  const editUrl = `https://github.com/${owner}/${repository}/edit/master/content/blog/${defaultSlug.slice(
     1,
     defaultSlug.length - 1,
   )}/index${lang === langKeyDefault ? '' : `.${lang}`}.${fileExt}`;
@@ -171,6 +169,10 @@ export const pageQuery = graphql`
         author
         social {
           disqusShortname
+        }
+        github {
+          owner
+          repository
         }
       }
     }
