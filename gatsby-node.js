@@ -1,5 +1,8 @@
+/* eslint-disable prefer-destructuring */
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const { getSlugAndLang } = require('ptz-i18n');
+const { langKeyDefault, pagesPaths } = require('./i18n');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -55,11 +58,20 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode });
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    });
+    let slug;
+    let langKey = langKeyDefault;
+    const slugAndLang = getSlugAndLang(
+      { langKeyDefault, pagesPaths },
+      node.fileAbsolutePath,
+    );
+    if (slugAndLang) {
+      langKey = slugAndLang.langKey;
+      slug = slugAndLang.slug;
+    } else {
+      slug = createFilePath({ node, getNode });
+    }
+
+    createNodeField({ node, name: 'langKey', value: langKey });
+    createNodeField({ node, name: `slug`, value: slug });
   }
 };

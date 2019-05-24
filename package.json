@@ -37,6 +37,7 @@
     "prism-react-renderer": "^0.1.5",
     "prism-themes": "^1.0.1",
     "prop-types": "^15.7.2",
+    "ptz-i18n": "^1.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-helmet": "^5.2.0",
