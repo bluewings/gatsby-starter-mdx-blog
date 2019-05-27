@@ -1,0 +1,38 @@
+---
+title: Using Context
+date: "2019-05-09T08:24:12.000Z"
+---
+
+import Context from '../../components/context';
+
+[](@context)
+
+## Context 1
+
+<Context>
+  {({ value, setValue }) => {
+    const handleClick = () => setValue('count', (value.count || 0) + 1);
+    return <button type="button" onClick={handleClick}>add count</button>
+  }}
+</Context>
+
+<Context>
+  {({ value }) => <pre>{JSON.stringify(value)}</pre>}
+</Context>
+
+[](@context)
+
+## Context 2
+
+<Context>
+  {({ value, setValue }) => {
+    const handleClick = () => setValue('count', (value.count || 0) + 1);
+    return <button type="button" onClick={handleClick}>add count</button>
+  }}
+</Context>
+
+<Context>
+  {({ value }) => <pre>{JSON.stringify(value)}</pre>}
+</Context>
+
+[](@contextend)

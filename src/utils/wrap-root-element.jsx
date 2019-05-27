@@ -3,6 +3,7 @@ import { MDXProvider } from '@mdx-js/tag';
 import rangeParser from 'parse-numeric-range';
 import { Code } from '../components/code';
 import { Provider as ThemeProvider } from './theme-context';
+import { Provider as DataProvider } from './context';
 import styles from './wrap.module.scss';
 
 const preToCodeBlock = (preProps) => {
@@ -148,11 +149,15 @@ const components = {
             }
             const childNodes = [];
             const childProps = getChildProps(tag, props);
-            getCursor(stack, root).push(
+            let next = (
               <div key={key} {...childProps} data-snippet-tag={tag}>
                 {childNodes}
-              </div>,
+              </div>
             );
+            if (tag === 'context') {
+              next = <DataProvider>{next}</DataProvider>;
+            }
+            getCursor(stack, root).push(next);
             stack.push({ tag, cursor: childNodes });
           } else {
             let curr;
