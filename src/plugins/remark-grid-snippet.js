@@ -25,8 +25,14 @@ module.exports = ({ markdownAST }) =>
             .split(',')
             .filter(identity)
             .reduce((accum, e) => {
-              const [, key, value] = e.match(/^([^\s]+)=([^\s]+)$/) || [];
-              return key && value ? { ...accum, [key]: value } : accum;
+              const [, key, , value] =
+                e.match(/^([^\s]+?)(=([^\s]+)){0,1}$/) || [];
+              return key
+                ? {
+                    ...accum,
+                    [key]: typeof value === 'undefined' ? true : value,
+                  }
+                : accum;
             }, {});
 
           const className = (_classNames || '')

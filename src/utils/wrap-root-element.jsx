@@ -2,6 +2,7 @@ import React from 'react';
 import { MDXProvider } from '@mdx-js/tag';
 import rangeParser from 'parse-numeric-range';
 import { Code } from '../components/code';
+import Grid from '../components/Grid';
 import { Provider as ThemeProvider } from './theme-context';
 import { Provider as DataProvider } from './context';
 import styles from './wrap.module.scss';
@@ -156,6 +157,12 @@ const components = {
             );
             if (tag === 'context') {
               next = <DataProvider>{next}</DataProvider>;
+            } else if (tag === GRID) {
+              next = (
+                <div key={key} {...childProps} data-snippet-tag={tag}>
+                  <Grid {...props.params}>{childNodes}</Grid>
+                </div>
+              );
             }
             getCursor(stack, root).push(next);
             stack.push({ tag, cursor: childNodes });
