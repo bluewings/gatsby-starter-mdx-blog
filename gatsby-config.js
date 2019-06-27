@@ -41,7 +41,7 @@ module.exports = {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
           {
-            resolve: `${__dirname}/src/plugins/remark-grid-snippet.js`,
+            resolve: `${__dirname}/src/plugins/remark-grid-snippet.ts`,
           },
           {
             resolve: `gatsby-remark-images`,
