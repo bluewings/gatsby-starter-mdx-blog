@@ -22,10 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allMdx(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
+        allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
           edges {
             node {
               fields {
@@ -58,14 +55,9 @@ exports.createPages = ({ graphql, actions }) => {
       return accum;
     }, {});
 
-    const defaultLangPosts = posts.filter(
-      ({ node }) => node.fields.langKey === langKeyDefault,
-    );
+    const defaultLangPosts = posts.filter(({ node }) => node.fields.langKey === langKeyDefault);
     defaultLangPosts.forEach((post, index) => {
-      const previous =
-        index === defaultLangPosts.length - 1
-          ? null
-          : defaultLangPosts[index + 1].node;
+      const previous = index === defaultLangPosts.length - 1 ? null : defaultLangPosts[index + 1].node;
       const next = index === 0 ? null : defaultLangPosts[index - 1].node;
       const { slug, directoryName, fileExt } = post.node.fields;
       const translations = translationsByDirectory[directoryName] || [];
@@ -82,9 +74,7 @@ exports.createPages = ({ graphql, actions }) => {
       });
     });
 
-    const otherLangPosts = posts.filter(
-      ({ node }) => node.fields.langKey !== langKeyDefault,
-    );
+    const otherLangPosts = posts.filter(({ node }) => node.fields.langKey !== langKeyDefault);
     otherLangPosts.forEach((post) => {
       const { slug, directoryName, fileExt } = post.node.fields;
       const translations = translationsByDirectory[directoryName] || [];
@@ -105,14 +95,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const [directoryName, fileExt] =
-      node.fileAbsolutePath.split('/').slice(-2) || [];
+    const [directoryName, fileExt] = node.fileAbsolutePath.split('/').slice(-2) || [];
     let slug;
     let langKey = langKeyDefault;
-    const slugAndLang = getSlugAndLang(
-      { langKeyDefault, pagesPaths },
-      node.fileAbsolutePath,
-    );
+    const slugAndLang = getSlugAndLang({ langKeyDefault, pagesPaths }, node.fileAbsolutePath);
     if (slugAndLang) {
       langKey = slugAndLang.langKey;
       slug = slugAndLang.slug;

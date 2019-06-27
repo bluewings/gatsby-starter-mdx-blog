@@ -11,22 +11,15 @@ module.exports = ({ markdownAST }) =>
       // convert ruled-link to custom-grid node
       if (node.children && node.children.length === 1) {
         const child = node.children[0];
-        if (
-          child.type === 'link' &&
-          child.url &&
-          child.url.search(pattern) === 0
-        ) {
-          const [, _tag, , _id, _classNames, , _params] = child.url.match(
-            pattern,
-          );
+        if (child.type === 'link' && child.url && child.url.search(pattern) === 0) {
+          const [, _tag, , _id, _classNames, , _params] = child.url.match(pattern);
           const [tag, ...args] = _tag.split('-');
 
           const params = (_params || '')
             .split(',')
             .filter(identity)
             .reduce((accum, e) => {
-              const [, key, , value] =
-                e.match(/^([^\s]+?)(=([^\s]+)){0,1}$/) || [];
+              const [, key, , value] = e.match(/^([^\s]+?)(=([^\s]+)){0,1}$/) || [];
               return key
                 ? {
                     ...accum,
@@ -43,13 +36,9 @@ module.exports = ({ markdownAST }) =>
           const key = `gatsby-snippet-${index}`;
 
           node.type = 'html';
-          node.value = `<gatsby--${tag} key="${key}" ${
-            _id ? `id="${_id}" ` : ''
-          }${
+          node.value = `<gatsby--${tag} key="${key}" ${_id ? `id="${_id}" ` : ''}${
             className ? `className="${className}" ` : ''
-          }args={${JSON.stringify(args)}} params={${JSON.stringify(
-            params,
-          )}} />`;
+          }args={${JSON.stringify(args)}} params={${JSON.stringify(params)}} />`;
 
           delete node.children;
 

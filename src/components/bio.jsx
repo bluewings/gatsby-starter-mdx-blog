@@ -30,14 +30,9 @@ function Bio() {
               }}
             />
             <p style={{ marginTop: -3 }}>
-              Written by <strong>{author}</strong> who lives and works in Suwon,
-              South Korea building useful things.
+              Written by <strong>{author}</strong> who lives and works in Suwon, South Korea building useful things.
               {` `}
-              {social.twitter && (
-                <a href={`https://twitter.com/${social.twitter}`}>
-                  You should follow him on Twitter
-                </a>
-              )}
+              {social.twitter && <a href={`https://twitter.com/${social.twitter}`}>You should follow him on Twitter</a>}
             </p>
           </div>
         );

@@ -12,10 +12,7 @@ function BlogIndex(props) {
 
   return (
     <Layout location={location} title={siteTitle} isIndexPage>
-      <SEO
-        title="All posts"
-        keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-      />
+      <SEO title="All posts" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
       <Bio />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
@@ -48,10 +45,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(
-      filter: { fields: { langKey: { eq: $langKey } } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
+    allMdx(filter: { fields: { langKey: { eq: $langKey } } }, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt

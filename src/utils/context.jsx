@@ -39,11 +39,7 @@ function DataProvider({ children }) {
     };
   }, [state, dispatch]);
 
-  return (
-    <DataContext.Provider value={value}>
-      {value && children}
-    </DataContext.Provider>
-  );
+  return <DataContext.Provider value={value}>{value && children}</DataContext.Provider>;
 }
 
 const Context = DataContext;

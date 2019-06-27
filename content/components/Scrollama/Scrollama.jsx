@@ -6,10 +6,7 @@ function Scrollama(props) {
 
   const { children } = props;
 
-  const childrenFn = useMemo(
-    () => (typeof children === 'function' ? children : null),
-    [children],
-  );
+  const childrenFn = useMemo(() => (typeof children === 'function' ? children : null), [children]);
 
   return <>{childrenFn(scrollInfo)}</>;
 }

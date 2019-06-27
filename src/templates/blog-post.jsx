@@ -6,11 +6,7 @@ import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { rhythm, scale } from '../utils/typography';
-import {
-  codeToLanguage,
-  createLanguageLink,
-  getLangKeyDefault,
-} from '../utils/i18n';
+import { codeToLanguage, createLanguageLink, getLangKeyDefault } from '../utils/i18n';
 
 const langKeyDefault = getLangKeyDefault();
 
@@ -30,11 +26,7 @@ function Translations(props) {
       <span>Translated by readers into: </span>
       {translations.map((l, i) => (
         <React.Fragment key={l}>
-          {l === lang ? (
-            <b>{codeToLanguage(l)}</b>
-          ) : (
-            <Link to={languageLink(l)}>{codeToLanguage(l)}</Link>
-          )}
+          {l === lang ? <b>{codeToLanguage(l)}</b> : <Link to={languageLink(l)}>{codeToLanguage(l)}</Link>}
           {i === translations.length - 1 ? '' : ' • '}
         </React.Fragment>
       ))}
@@ -80,11 +72,7 @@ function BlogPostTemplate(props) {
   translations.sort((a, b) => (codeToLanguage(a) < codeToLanguage(b) ? -1 : 1));
 
   return (
-    <Layout
-      location={location}
-      title={siteTitle}
-      maxWidth={post.frontmatter.max_width}
-    >
+    <Layout location={location} title={siteTitle} maxWidth={post.frontmatter.max_width}>
       <SEO title={post.frontmatter.title} description={post.excerpt} />
       <h1>{post.frontmatter.title}</h1>
       <p
@@ -99,12 +87,7 @@ function BlogPostTemplate(props) {
         {post.frontmatter.date}
       </p>
       {translations.length > 0 && (
-        <Translations
-          translations={translations}
-          editUrl={editUrl}
-          languageLink={languageLink}
-          lang={lang}
-        />
+        <Translations translations={translations} editUrl={editUrl} languageLink={languageLink} lang={lang} />
       )}
       <MDXRenderer>{post.code.body}</MDXRenderer>
       <footer>

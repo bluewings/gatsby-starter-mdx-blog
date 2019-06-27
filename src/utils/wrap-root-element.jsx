@@ -24,9 +24,7 @@ const preToCodeBlock = (preProps) => {
     let language;
     let highlightLines;
     if (typeof className === 'string') {
-      const matched = className
-        .trim()
-        .match(/^language-([^{}]+)(\{(.+)\}){0,1}$/);
+      const matched = className.trim().match(/^language-([^{}]+)(\{(.+)\}){0,1}$/);
       if (matched) {
         let option;
         [, language, , option] = matched;
@@ -76,14 +74,7 @@ const getCursor = (stack, root) => getParent(stack).cursor || root;
 const getChildProps = (tag, props = {}) => {
   const { id, className, args = [], params = {} } = props;
 
-  const styleKeys = [
-    'background',
-    'color',
-    'overflow',
-    'minHeight',
-    'maxHeight',
-    'height',
-  ];
+  const styleKeys = ['background', 'color', 'overflow', 'minHeight', 'maxHeight', 'height'];
 
   const childStyle = Object.keys(params)
     .filter((e) => styleKeys.indexOf(e) !== -1)
@@ -91,18 +82,11 @@ const getChildProps = (tag, props = {}) => {
 
   const dataProps = Object.keys(params)
     .filter((e) => e.search(/^@/) !== -1)
-    .reduce(
-      (accum, key) => ({ ...accum, [key.replace(/^@/, 'data-')]: params[key] }),
-      {},
-    );
+    .reduce((accum, key) => ({ ...accum, [key.replace(/^@/, 'data-')]: params[key] }), {});
 
   const childProps = {
     ...dataProps,
-    className: [
-      `gatsby--${tag}`,
-      ...[tag, ...(args || []).map((e) => `${tag}_${e}`)].map((e) => styles[e]),
-      className,
-    ]
+    className: [`gatsby--${tag}`, ...[tag, ...(args || []).map((e) => `${tag}_${e}`)].map((e) => styles[e]), className]
       .filter((e) => e)
       .join(' '),
   };
@@ -130,9 +114,7 @@ const components = {
     return <pre {...preProps} />;
   },
   wrapper: (gridProps) => {
-    const children = Array.isArray(gridProps.children)
-      ? gridProps.children
-      : [gridProps.children];
+    const children = Array.isArray(gridProps.children) ? gridProps.children : [gridProps.children];
 
     return children.reduce(
       (accum, child) => {

@@ -19,16 +19,10 @@ export const Code = ({ codeString, language, highlightLines, ...props }) => {
   const overrideProps = (prev, type) => {
     const next = { ...prev };
     delete next.style;
-    if (
-      type === 'line' &&
-      highlightLines &&
-      highlightLines.indexOf(next.key) !== -1
-    ) {
+    if (type === 'line' && highlightLines && highlightLines.indexOf(next.key) !== -1) {
       return {
         ...next,
-        className: [next.className, 'gatsby-highlight-code-line']
-          .filter(identity)
-          .join(' '),
+        className: [next.className, 'gatsby-highlight-code-line'].filter(identity).join(' '),
       };
     }
     return next;
@@ -45,11 +39,7 @@ export const Code = ({ codeString, language, highlightLines, ...props }) => {
                   if (token.empty && !token.content && arr.length === 1) {
                     fixed = { ...token, content: ' ' };
                   }
-                  return (
-                    <span
-                      {...overrideProps(getTokenProps({ token: fixed, key }))}
-                    />
-                  );
+                  return <span {...overrideProps(getTokenProps({ token: fixed, key }))} />;
                 })}
               </div>
             ))}

@@ -24,12 +24,8 @@ function reducer(state, action) {
       const { element, index, direction } = payload;
       const progress = direction === 'down' ? 0 : 1;
       const elRect = element.getBoundingClientRect();
-      const top =
-        elRect.top + document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      const left =
-        elRect.left + document.documentElement.scrollLeft ||
-        document.body.scrollLeft;
+      const top = elRect.top + document.documentElement.scrollTop || document.body.scrollTop;
+      const left = elRect.left + document.documentElement.scrollLeft || document.body.scrollLeft;
       const rect = {
         width: elRect.width,
         height: elRect.height,

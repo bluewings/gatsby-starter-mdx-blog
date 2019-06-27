@@ -17,11 +17,7 @@ function ThemeProvider(props) {
   const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
 
   const { children } = props;
-  return (
-    <ThemeContext.Provider value={value}>
-      {value && children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={value}>{value && children}</ThemeContext.Provider>;
 }
 
 const Context = ThemeContext;

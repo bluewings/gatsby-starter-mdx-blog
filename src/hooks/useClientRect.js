@@ -5,9 +5,7 @@ function useClientRect(properties, clientRef) {
   const builtInRef = useRef();
   const requestId = useRef();
 
-  const _properties = Array.isArray(properties)
-    ? properties
-    : ['left', 'top', 'right', 'bottom', 'width', 'height'];
+  const _properties = Array.isArray(properties) ? properties : ['left', 'top', 'right', 'bottom', 'width', 'height'];
   const _clientRef = clientRef || builtInRef;
 
   const [size, setSize] = useState({ arr: null, rect: null });
