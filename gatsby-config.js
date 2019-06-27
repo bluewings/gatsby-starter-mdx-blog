@@ -2,6 +2,7 @@ const mdxFeed = require('gatsby-mdx/feed');
 const tailwindcss = require('tailwindcss');
 
 module.exports = {
+  pathPrefix: `/gatsby-starter-mdx-blog`,
   siteMetadata: {
     title: `개츠비 스타터 MDX`,
     author: `Cha Sung Won`,
