@@ -6,7 +6,7 @@ import Footer from './Footer';
 import styles from './Layout.module.scss';
 import '../styles/common.css';
 
-function Layout(props) {
+function Layout(props: any) {
   const { location, title, children, maxWidth, isIndexPage } = props;
   // @ts-ignore
   const rootPath = `${__PATH_PREFIX__}/`;

@@ -10,7 +10,7 @@ import { codeToLanguage, createLanguageLink, getLangKeyDefault } from '../utils/
 
 const langKeyDefault = getLangKeyDefault();
 
-function Translations(props) {
+function Translations(props: any) {
   const { translations, lang, languageLink, editUrl } = props;
   return (
     <p
@@ -24,7 +24,7 @@ function Translations(props) {
       }}
     >
       <span>Translated by readers into: </span>
-      {translations.map((l, i) => (
+      {translations.map((l: any, i: number) => (
         <React.Fragment key={l}>
           {l === lang ? <b>{codeToLanguage(l)}</b> : <Link to={languageLink(l)}>{codeToLanguage(l)}</Link>}
           {i === translations.length - 1 ? '' : ' • '}
@@ -46,7 +46,7 @@ function Translations(props) {
   );
 }
 
-function BlogPostTemplate(props) {
+function BlogPostTemplate(props: any) {
   const {
     location,
     data: {
@@ -69,7 +69,7 @@ function BlogPostTemplate(props) {
     defaultSlug.length - 1,
   )}/index${lang === langKeyDefault ? '' : `.${lang}`}.${fileExt}`;
   const translations = translations_.slice();
-  translations.sort((a, b) => (codeToLanguage(a) < codeToLanguage(b) ? -1 : 1));
+  translations.sort((a: any, b: any) => (codeToLanguage(a) < codeToLanguage(b) ? -1 : 1));
 
   return (
     <Layout location={location} title={siteTitle} maxWidth={post.frontmatter.max_width}>

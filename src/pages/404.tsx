@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
-function NotFoundPage(props) {
+function NotFoundPage(props: any) {
   const { data, location } = props;
   const siteTitle = data.site.siteMetadata.title;
 
