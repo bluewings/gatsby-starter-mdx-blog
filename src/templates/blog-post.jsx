@@ -107,9 +107,8 @@ function BlogPostTemplate(props) {
         />
       )}
       <MDXRenderer>{post.code.body}</MDXRenderer>
-
       <footer>
-        <p>
+        <p style={{ marginTop: rhythm(2.5) }}>
           <a href={editUrl} target="_blank" rel="noopener noreferrer">
             Edit on GitHub
           </a>

@@ -11,7 +11,13 @@ const reducer = (state, action) => {
   switch (type) {
     case SET_DATA: {
       const data = payload;
-      return { ...state, data };
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          ...data,
+        },
+      };
     }
     default:
       break;

@@ -48,4 +48,13 @@ body {
       }
     }
   }
+  p,
+  ul,
+  ol {
+    code {
+      // background: yellow;
+      background: var(--translation-bg);
+      padding: 0.2em 0.4em;
+    }
+  }
 }

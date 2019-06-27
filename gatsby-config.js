@@ -106,7 +106,7 @@ module.exports = {
           // `Noto Serif KR`,
           // `Noto Sans KR`,
           'Open Sans',
-          `Gothic A1`,
+          `Gothic A1:400,700`,
           // other korean google fonts
           // `Cute Font`, `Do Hyeon`, `Gothic A1`, `Jua`, `Stylish`,
         ],

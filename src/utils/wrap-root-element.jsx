@@ -89,7 +89,15 @@ const getChildProps = (tag, props = {}) => {
     .filter((e) => styleKeys.indexOf(e) !== -1)
     .reduce((accum, key) => ({ ...accum, [key]: params[key] }), {});
 
+  const dataProps = Object.keys(params)
+    .filter((e) => e.search(/^@/) !== -1)
+    .reduce(
+      (accum, key) => ({ ...accum, [key.replace(/^@/, 'data-')]: params[key] }),
+      {},
+    );
+
   const childProps = {
+    ...dataProps,
     className: [
       `gatsby--${tag}`,
       ...[tag, ...(args || []).map((e) => `${tag}_${e}`)].map((e) => styles[e]),
