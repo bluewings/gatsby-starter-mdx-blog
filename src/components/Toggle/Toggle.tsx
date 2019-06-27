@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useMemo } from 'react';
-import { Context as ThemeContext } from '../utils/theme-context';
+import { Context as ThemeContext } from '../../utils/theme-context';
 import styles from './Toggle.module.scss';
 
 function __toggleTheme() {
