@@ -8,6 +8,7 @@ body {
     // --textLink: #d23669;
     --hr: hsla(0, 0%, 0%, 0.2);
     --translation-bg: rgba(0, 0, 0, 0.09);
+    --translation2-bg: rgba(0, 0, 0, 0.18);
     // --inlineCode-bg: rgba(255, 229, 100, 0.2);
     // --inlineCode-text: #1a1a1a;
   }
@@ -18,6 +19,7 @@ body {
     // --textLink: var(--pink);
     --hr: hsla(0, 0%, 100%, 0.2);
     --translation-bg: rgba(255, 255, 255, 0.09);
+    --translation2-bg: rgba(255, 255, 255, 0.18);
     // --inlineCode-bg: hsl(222, 14%, 25%);
     // --inlineCode-text: #e6e6e6;
     hr {
@@ -55,6 +57,11 @@ body {
       // background: yellow;
       background: var(--translation-bg);
       padding: 0.2em 0.4em;
+    }
+  }
+  span {
+    &:global(.gatsby-resp-image-background-image) {
+      display: none !important;
     }
   }
 }
