@@ -135,16 +135,19 @@ function Timeline({ range, offset = 200 }: any) {
           })}
         </ul>
       </div>
-      {/* <h1>Timeline</h1>
-      <h2>
-        {from.toString()} , {to.toString()}
-      </h2> */}
     </div>
   );
 }
 
 function useWindowWidth() {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(() => {
+    try {
+      return window.innerWidth
+    } catch (err) {
+      /* ignore */
+    }
+    return 0;
+  });
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
